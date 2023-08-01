@@ -23,7 +23,8 @@
     "start:web": "office-addin-debugging start manifest.xml web",
     "stop": "office-addin-debugging stop manifest.xml",
     "validate": "office-addin-manifest validate manifest.xml",
-    "watch": "webpack --mode development --watch"
+    "watch": "webpack --mode development --watch",
+    "go": "nodemon app.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
@@ -32,7 +33,9 @@
     "jwks-rsa": "^3.0.1",
     "jwt-decode": "^3.1.2",
     "morgan": "^1.10.0",
-    "regenerator-runtime": "^0.13.7"
+    "nodemon": "^3.0.1",
+    "regenerator-runtime": "^0.13.7",
+    "web-push": "^3.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
@@ -47,6 +50,7 @@
     "file-loader": "^6.2.0",
     "html-loader": "^4.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "http-proxy-middleware": "^2.0.6",
     "office-addin-cli": "^1.5.5",
     "office-addin-debugging": "^5.0.5",
     "office-addin-dev-certs": "^1.11.5",

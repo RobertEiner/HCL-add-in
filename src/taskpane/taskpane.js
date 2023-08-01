@@ -6,6 +6,7 @@
 /* global document, Office */
 
 import jwt_decode from "jwt-decode";
+import {send} from "../client/client"
 
 // This line sets up an event handler that is triggered when the
 // office.js library is fully loaded and the host application (outlook in this case) is ready
@@ -16,6 +17,7 @@ Office.onReady((info) => {
     document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
     document.getElementById("run").onclick = run;
+    document.getElementById("notification").onclick = send;
   }
 });
 
@@ -32,6 +34,25 @@ export async function getUserData() {
     console.log("beforeeeee");
     const path = "/getuserfilenames";
 
+    // Check if the browser supports notifications
+    if ("Notification" in window) {
+      // Request permission from the user
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          // Permission granted, show a notification
+          const notification = new Notification("New Email", {
+            body: "You've received a new email!",
+            icon: "path/to/notification-icon.png",
+          });
+
+          // Handle click event on the notification (optional)
+          notification.onclick = function () {
+            // Handle the click event here (e.g., open your add-in)
+          };
+        }
+      });
+    }
+
     const response = await fetch(path, {
       method: "GET",
       headers: {
@@ -43,7 +64,6 @@ export async function getUserData() {
 
     document.getElementById("token").innerHTML = "Token bearer: " + userToken.name;
     document.getElementById("token-id").innerHTML = "Token ID: " + userToken.oid;
-
   } catch (exception) {
     document.getElementById("token").innerHTML = "Exception: " + exception.message;
     if (exception.code === 13003) {
@@ -98,8 +118,20 @@ export async function run() {
   // }
 }
 
+export async function notify() {
+  console.log("hellodgg");
+  Notification.requestPermission().then((perm) => {
+    console.log(perm);
+
+    if (perm === "denied") {
+      new Notification("example");
+    } else {
+      console.log("hhgg");
+    }
+  });
+}
+
 export async function handleAttachmentCb(result) {
- 
   // if(result.status === Office.AsyncResultStatus.Succeeded) {
   // if (typeof result === "object") {
   document.getElementById("item-subject").innerHTML = "Attachments: <br/>" + result.value.name;
