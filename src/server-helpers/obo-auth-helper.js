@@ -9,9 +9,9 @@ const DISCOVERY_KEYS_ENDPOINT = "https://login.microsoftonline.com/common/discov
 
 const config = {
   auth: {
-    clientId: process.env.CLIENT_ID,
+    clientId: "7c5abd76-11c4-4993-9a55-ebc01c2d78d1",
     authority: "https://login.microsoftonline.com/common",
-    clientSecret: process.env.CLIENT_SECRET,
+    clientSecret: "Mft8Q~~vtlkui1eSsxAeqCeJJdt5dc7-2O4RJblF",
   },
   system: {
     loggerOptions: {
@@ -29,6 +29,7 @@ const config = {
 
 exports.getConfidentialClientApplication = function getConfidentialClientApplication() {
   // Create msal application object
+  console.log("authhelper")
   return new msal.ConfidentialClientApplication(config);
 };
 

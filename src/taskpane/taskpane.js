@@ -6,7 +6,7 @@
 /* global document, Office */
 
 import jwt_decode from "jwt-decode";
-import {send} from "../client/client"
+import { send } from "../client/client";
 
 // This line sets up an event handler that is triggered when the
 // office.js library is fully loaded and the host application (outlook in this case) is ready
@@ -23,45 +23,37 @@ Office.onReady((info) => {
 
 export async function getUserData() {
   try {
-    let userTokenEncoded = await OfficeRuntime.auth.getAccessToken({ allowSignInPrompt: true });
-    let userToken = jwt_decode(userTokenEncoded); // Using the https://www.npmjs.com/package/jwt-decode library.
-    console.log(userToken.name); // user name
-    console.log(userToken.preferred_username); // email
-    console.log("AUD: " + userToken.aud); // user id
-    console.log("ID: " + userToken.oid);
-    console.log("Access: " + userToken.scp);
-
-    console.log("beforeeeee");
-    const path = "/getuserfilenames";
-
-    // Check if the browser supports notifications
-    if ("Notification" in window) {
-      // Request permission from the user
-      Notification.requestPermission().then((permission) => {
-        if (permission === "granted") {
-          // Permission granted, show a notification
-          const notification = new Notification("New Email", {
-            body: "You've received a new email!",
-            icon: "path/to/notification-icon.png",
-          });
-
-          // Handle click event on the notification (optional)
-          notification.onclick = function () {
-            // Handle the click event here (e.g., open your add-in)
-          };
-        }
-      });
-    }
-
-    const response = await fetch(path, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + userTokenEncoded,
-      },
+    let userTokenEncoded = await OfficeRuntime.auth.getAccessToken({
+      allowSignInPrompt: false,
+      allowConsentPrompt: false,
+      // forMSGraphAccess: true,
     });
-    console.log(response);
+    let userToken = jwt_decode(userTokenEncoded); // Using the https://www.npmjs.com/package/jwt-decode library.
+    // console.log(userToken.name); // user name
+    // console.log(userToken.preferred_username); // email
+    // console.log("AUD: " + userToken.aud); // user id
+    // console.log("ID: " + userToken.oid);
+    // console.log("Access: " + userToken.scp);
 
+    const path = "http://localhost:3001/getuserfilenames";
+    console.log(userTokenEncoded)
+  
+    try {
+      const response = await fetch(path, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + userTokenEncoded,
+        },
+      });
+      // const data = await response.json();
+      // console.log(data.message);
+      const data = await response.json();
+      console.log(data.errorDetails.errorMessage);
+    } catch (err) {
+      console.log(err);
+    }
+    //g
     document.getElementById("token").innerHTML = "Token bearer: " + userToken.name;
     document.getElementById("token-id").innerHTML = "Token ID: " + userToken.oid;
   } catch (exception) {
