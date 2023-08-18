@@ -18,13 +18,13 @@ The structure of the applicaiton consists of a few components:
 
 [MS add-ins](https://learn.microsoft.com/en-us/office/dev/add-ins/overview/office-add-ins) are basically embedded web applicaitons within Office applications that lets the developer cusotomize the appearance and functionality of them. However, they are quite limited in the ways you can do this.  
 
-This component is based on a tutorial from [Microsoft docs](https://learn.microsoft.com/en-us/office/dev/add-ins/quickstarts/outlook-quickstart?tabs=yeomangenerator). The parts belonging to this component is the ***components*** and ***taskpane*** folders with their respective source code files. The most important being the taskpane.js. It's responsibilities:
+This component is based on a tutorial from the [Microsoft docs](https://learn.microsoft.com/en-us/office/dev/add-ins/quickstarts/outlook-quickstart?tabs=yeomangenerator). The parts belonging to this component is the ***components*** and ***taskpane*** folders with their respective source code files. The most important being the taskpane.js. It's responsibilities:
 *  Aquire an access token from MS Identity Platform to be able to authenticate to [MS Graph API](https://learn.microsoft.com/en-us/graph/use-the-api). Through Graph API, access would be granted to the user's OneDrive data, to be able to upload email attachments. 
 * Pass the access token to the Express.js server, which is a necessary step towards accessing the Graph API.
 
 #### **Microsoft Graph API**
 
-Using the MS Graph API, a user's OneDrive data can be accessed. This is the recommended API from Microsoft for this purpose. This requires an authorization and authentication process. Information on how to[authorize to MS Graph API from an Outlook add-in can be found [here](https://learn.microsoft.com/en-us/office/dev/add-ins/develop/authorize-to-microsoft-graph).
+Using the MS Graph API, a user's OneDrive data can be accessed. This is the recommended API from Microsoft for this purpose. This requires an authorization and authentication process. Information on how toauthorize to MS Graph API from an Outlook add-in can be found [here](https://learn.microsoft.com/en-us/office/dev/add-ins/develop/authorize-to-microsoft-graph).
 
 The tutorial used for implementing this is [this one](https://learn.microsoft.com/en-us/office/dev/add-ins/develop/create-sso-office-add-ins-nodejs), it includes:
 * Registering the application in the Azure Active Directory (requires admin account). An [MS Developer Program](https://developer.microsoft.com/en-us/microsoft-365/dev-program) sandbox environment can be created if admin rights are missing.
