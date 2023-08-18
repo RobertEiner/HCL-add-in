@@ -79,49 +79,20 @@ export async function run() {
   } else {
     console.log("No attachments");
   }
-
-  // }
-
-  // item.getAttachmentsAsync(function(result){
-  //   if(result.status !== Office.AsyncResultStatus.Succeeded) {
-  //     document.getElementById("item-subject").innerHTML = "ERROR: " + result.error.message;
-  //   } else {
-  //     if (result.value.length > 0) {
-  //       const attachment = result.value[0];
-  //       attachmentString += "Name: " + attachment.name + " <br/> Size: " + attachment.size;
-  //       document.getElementById("item-subject").innerHTML = "Attachments: <br/>" + attachmentString;
-
-  //     } else {
-  //       document.getElementById("item-subject").innerHTML = "Attachments: no attachments";
-  //     }
-  //   }
-  // });
-
-  // if(item.attachments.length > 0) {
-  //   for(let i = 0; i < item.attachments.length; i++) {
-  //     const attachment = item.attachments[i];
-
-  //     attachmentString += "Name: " + attachment.name + "<br/>";
-  //   }
-  //   // attachmentIds += " ID: " + item.attachments[0].id + "<br/>";
-  //   document.getElementById("item-subject").innerHTML = "Attachments: <br/>" + attachmentString;
-  // } else {
-  //   document.getElementById("item-subject").innerHTML = "No attachments available" + attachmentString;
-  // }
 }
 
-export async function notify() {
-  console.log("hellodgg");
-  Notification.requestPermission().then((perm) => {
-    console.log(perm);
+// export async function notify() {
+//   console.log("hellodgg");
+//   Notification.requestPermission().then((perm) => {
+//     console.log(perm);
 
-    if (perm === "denied") {
-      new Notification("example");
-    } else {
-      console.log("hhgg");
-    }
-  });
-}
+//     if (perm === "denied") {
+//       new Notification("example");
+//     } else {
+//       console.log("hhgg");
+//     }
+//   });
+// }
 
 export async function handleAttachmentCb(result) {
   // if(result.status === Office.AsyncResultStatus.Succeeded) {
@@ -129,9 +100,3 @@ export async function handleAttachmentCb(result) {
   document.getElementById("item-subject").innerHTML = "Attachments: <br/>" + result.value.name;
   document.getElementById("attachments-id").innerHTML = "ATT: ";
 }
-
-// }
-// }
-
-// document.getElementById("attachments-id").innerHTML = "ID: <br/>" + attachmentIds;
-// SON.stringify(result.value.format)

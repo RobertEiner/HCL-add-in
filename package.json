@@ -24,7 +24,7 @@
     "stop": "office-addin-debugging stop manifest.xml",
     "validate": "office-addin-manifest validate manifest.xml",
     "watch": "webpack --mode development --watch",
-    "go": "nodemon app.js"
+    "app": "nodemon app.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
