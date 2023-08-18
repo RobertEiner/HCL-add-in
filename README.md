@@ -31,7 +31,7 @@ The tutorial used for implementing this is [this one](https://learn.microsoft.co
 * Cloning repository from GitHub
 
 The application the tutorial creates only works on  Powerpoint, Excel and word, however, the authentication principles are the same for Outlook. 
-The parts belonging to this component is in the ***server-helpers*** folder (contains files for facilitating the authentication process) and the ***routes*** folder(contains files for actually extracting data from OneDrive through Graph API). 
+The parts belonging to this component is in the ***server-helpers*** folder (contains files for facilitating the authentication process) and the ***routes*** folder (contains files for actually extracting data from OneDrive through Graph API). 
 
 #### **Web notifications**
 
@@ -80,13 +80,13 @@ To test this application at it's current state, follow these instructions:
 ### Prerequisites
 * Code editor e.g. [VS Code](https://code.visualstudio.com/)
 * [Node.js](https://nodejs.org/en) with NPM 
-* Right now the app is registered on my account in a sandbox environment that will eventually expire. If development will continue using the code provided, the developer needs a Microsoft account with admin privileges to register the application in Azure Active Directory (If you don't have it use [MS Developer Program](https://developer.microsoft.com/en-us/microsoft-365/dev-program) to get sandbox environment with admin rights)
+* Right now the app is registered on my account in a sandbox environment that will eventually expire. If development will continue using the code provided, the developer needs a Microsoft account with admin privileges to register the application in Azure Active Directory (If you don't have it, use [MS Developer Program](https://developer.microsoft.com/en-us/microsoft-365/dev-program) to get sandbox environment with admin rights)
 
 ### Steps
 
 **Clone repository**
 
-git clone
+>git clone https://github.com/RobertEiner/HCL-add-in.git
 
 ***Run MS Outlook add-in***
 1. Navigate to root folder of the repo and run ***npm install***
